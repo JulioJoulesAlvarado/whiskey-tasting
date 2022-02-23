@@ -18,7 +18,7 @@ function Review(props){
                     <h6 className="card-subtitle mb-2 text-muted">{review.year}</h6>
                     <h6 className="card-subtitle mb-2 text-muted">Proof: {review.proof}</h6>
                     <h6 className="card-subtitle mb-2 text-muted">Distillery: {review.distillery}</h6>
-                    <h6 className="card-subtitle mb-2 text-muted"> Class: {review.type}</h6>
+                    <h6 className="card-subtitle mb-2 text-muted"> Class: {review.whiskeyType}</h6>
                     <h6 className="card-subtitle mb-2 text-muted">Age: {review.age}</h6>
 
                     <p class="card-text">{review.notes}</p>

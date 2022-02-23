@@ -1,8 +1,13 @@
 import NavBar from "./NavBar";
 import React, {useState} from "react";
 import ScoreCard from "./ScoreCard";
+import {useNavigate} from "react-router-dom";
 
 function NewReviewForm(props){
+    const {saveReview}=props;
+
+    let history = useNavigate();
+
     const [name, setName]=useState("")
     const [proof, setProof]=useState("")
     const [year, setYear]=useState(2021)
@@ -14,7 +19,7 @@ function NewReviewForm(props){
     const [uniqueness,setUniqueness] = useState(5);
     const [valueRating,setValueRating] = useState(5);
     const [overallRating,setOverallRating] = useState(5);
-    const [whiskeyType,setWhiskeyType]=useState("");
+    const [whiskeyType,setWhiskeyType]=useState("Bourbon");
 
     const [noseCereal, setNoseCereal]=useState(5);
     const [noseFruit, setNoseFruit]=useState(5);
@@ -37,12 +42,59 @@ function NewReviewForm(props){
     const [finishWood, setFinishWood]=useState(5);
     const [finishNotes,setFinishNotes]=useState("");
 
+    const handleSubmit=(event)=>{
+        event.preventDefault();
+        const nose={
+            cereal:noseCereal,
+            fruit: noseFruit,
+            floral:noseFloral,
+            spice:noseSpice,
+            wood:noseWood,
+            notes:noseNotes
+        }
+        const palate={
+            cereal:palateCereal,
+            fruit: palateFruit,
+            floral:palateFloral,
+            spice:palateSpice,
+            wood:palateWood,
+            notes:palateNotes
+        }
+        const finish={
+            cereal:finishCereal,
+            fruit: finishFruit,
+            floral:finishFloral,
+            spice:finishSpice,
+            wood:finishWood,
+            notes:finishNotes
+        }
+        const newReview={
+            name:name,
+            proof:proof,
+            year:year,
+            distillery:distillery,
+            notes:notes,
+            whiskeyType:whiskeyType,
+            noseRating:noseRating,
+            palateRating:palateRating,
+            finishRating,
+            uniqueness,
+            valueRating,
+            overall:overallRating,
+            nose,
+            palate,
+            finish
+        }
+        console.log(`You Created Review for ${newReview.name}`)
+        saveReview(newReview)
+        history('/whiskeys')
+    }
     return (
         <div className="reviewForm">
             <NavBar/>
             <h2 className="mt-3">New Whiskey Information</h2>
             <div className="form col-md-6 offset-md-3 validated-form" noValidate  encType="multipart/form-data">
-            <form action="/whiskeys" method="POST">
+            <form className="form-group" onSubmit={handleSubmit}>
 
                 <div className="input-group mb-3 mt-3">
                     <span className="input-group-text" id="name" >Name</span>
@@ -82,13 +134,13 @@ function NewReviewForm(props){
                 <div className="accordion mt-5" id="scoreAccordian">
                     <div className="accordion-item">
                         <h3 className="accordian-header" id="headingNose">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNose" aria-expanded="true" aria-controls="collapseNose">
+                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNose" aria-expanded="true" aria-controls="collapseNose">
                             Nose
                             </button>                    
                         </h3>
 
-                        <div id="collapseNose" class="accordion-collapse collapse show" aria-labelledby="headingNose" data-bs-parent="#scoreAccordion">
-                            <div class="accordion-body">
+                        <div id="collapseNose" className="accordion-collapse collapse show" aria-labelledby="headingNose" data-bs-parent="#scoreAccordion">
+                            <div className="accordion-body">
                             <label htmlFor="noseRating" className="form-label mt-2">{`Nose Rating: ${noseRating}`} </label>
                             <input type="range" value={noseRating} className="form-range" min="0" max="10" step="0.5" id="noseRating" onChange={e=>setNoseRating(e.target.value)}></input>
                             <ScoreCard  name="nose" cereal={noseCereal} setCereal={setNoseCereal} fruit={noseFruit} setFruit={setNoseFruit}
@@ -102,13 +154,13 @@ function NewReviewForm(props){
                     
                     <div className="accordion-item">
                         <h3 className="accordian-header" id="headingPalate">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePalate" aria-expanded="false" aria-controls="collapsePalate">
+                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePalate" aria-expanded="false" aria-controls="collapsePalate">
                             Palate
                             </button>                    
                         </h3>
                         
-                        <div id="collapsePalate" class="accordion-collapse collapse" aria-labelledby="headingPalate" data-bs-parent="#scoreAccordion">
-                            <div class="accordion-body"></div>
+                        <div id="collapsePalate" className="accordion-collapse collapse" aria-labelledby="headingPalate" data-bs-parent="#scoreAccordion">
+                            <div className="accordion-body"></div>
                                 <label htmlFor="palateRating" className="form-label mt-2">{`Palate Rating: ${palateRating}`} </label>
                                 <input type="range" value={palateRating} className="form-range" min="0" max="10" step="0.5" id="palateRating" onChange={e=>setPalateRating(e.target.value)}></input>
                                 <ScoreCard  name="palate" cereal={palateCereal} setCereal={setPalateCereal} fruit={palateFruit} setFruit={setPalateFruit}
@@ -121,12 +173,12 @@ function NewReviewForm(props){
                     
                     <div className="accordion-item">
                         <h3 className="accordian-header" id="headingFinish">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFinish" aria-expanded="false" aria-controls="collapseFinish">
+                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFinish" aria-expanded="false" aria-controls="collapseFinish">
                             Finish
                             </button>                    
                         </h3>
-                        <div id="collapseFinish" class="accordion-collapse collapse" aria-labelledby="headingFinish" data-bs-parent="#scoreAccordion">
-                            <div class="accordion-body"></div>
+                        <div id="collapseFinish" className="accordion-collapse collapse" aria-labelledby="headingFinish" data-bs-parent="#scoreAccordion">
+                            <div className="accordion-body"></div>
                                 <label htmlFor="finishRating" className="form-label mt-2">{`Finish Rating: ${finishRating}`} </label>
                                 <input type="range" value={finishRating} className="form-range" min="0" max="10" step="0.5" id="finishRating" onChange={e=>setFinishRating(e.target.value)}></input>
                                 <ScoreCard  name="finish" cereal={finishCereal} setCereal={setFinishCereal} fruit={finishFruit} setFruit={setFinishFruit}
@@ -148,7 +200,7 @@ function NewReviewForm(props){
 
 
 
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>Submit</button>
             </form>
             </div>
         </div>
