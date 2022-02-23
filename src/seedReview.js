@@ -3,6 +3,7 @@ export default [
         name: "Buffalo Trace",
         proof: 90,
         year: 2020,
+        id:"Buffalo Trace 2020",
         distillery:"Buffalo Trace",
         noseRating:5,
         palateRating: 6,
@@ -43,6 +44,7 @@ export default [
     {
         name: "Blanton's K&L Pick",
         proof: 93,
+        id: "Blanton's K&L Pick 2020",
         year:2020,
         distillery:"Buffalo Trace",
         noseRating:6.5,

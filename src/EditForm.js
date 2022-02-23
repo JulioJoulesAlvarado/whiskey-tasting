@@ -1,48 +1,52 @@
 import NavBar from "./NavBar";
 import React, {useState} from "react";
 import ScoreCard from "./ScoreCard";
-import {useNavigate} from "react-router-dom";
+import {useNavigate,useParams,Link} from "react-router-dom";
 
-function NewReviewForm(props){
-    const {saveReview}=props;
+function EditForm(props){
+    const paramId=useParams().id;
+    const {updateReview}=props;
+
+    const review=props.reviews[paramId];
+    console.log(props.reviews)
 
     let history = useNavigate();
 
-    const [name, setName]=useState("")
-    const [proof, setProof]=useState("")
-    const [year, setYear]=useState(2021)
-    const [distillery, setDistillery]=useState("")
-    const [notes, setNotes]=useState("")
-    const [noseRating,setNoseRating] = useState(5);
-    const [palateRating,setPalateRating] = useState(5);
-    const [finishRating,setFinishRating] = useState(5);
-    const [uniqueness,setUniqueness] = useState(5);
-    const [valueRating,setValueRating] = useState(5);
-    const [overallRating,setOverallRating] = useState(5);
-    const [whiskeyType,setWhiskeyType]=useState("Bourbon");
+    const [name, setName]=useState(review.name)
+    const [proof, setProof]=useState(review.proof)
+    const [year, setYear]=useState(review.year)
+    const [distillery, setDistillery]=useState(review.distillery)
+    const [notes, setNotes]=useState(review.notes)
+    const [noseRating,setNoseRating] = useState(review.noseRating);
+    const [palateRating,setPalateRating] = useState(review.palateRating);
+    const [finishRating,setFinishRating] = useState(review.finishRating);
+    const [uniqueness,setUniqueness] = useState(review.uniqueness);
+    const [valueRating,setValueRating] = useState(review.value);
+    const [overallRating,setOverallRating] = useState(review.overall);
+    const [whiskeyType,setWhiskeyType]=useState(review.whiskeyType);
 
-    const [noseCereal, setNoseCereal]=useState(5);
-    const [noseFruit, setNoseFruit]=useState(5);
-    const [noseFloral, setNoseFloral]=useState(5);
-    const [noseSpice, setNoseSpice]=useState(5);
-    const [noseWood, setNoseWood]=useState(5);
-    const [noseNotes,setNoseNotes]=useState("");
+    const [noseCereal, setNoseCereal]=useState(review.nose.cereal);
+    const [noseFruit, setNoseFruit]=useState(review.nose.fruit);
+    const [noseFloral, setNoseFloral]=useState(review.nose.floral);
+    const [noseSpice, setNoseSpice]=useState(review.nose.spice);
+    const [noseWood, setNoseWood]=useState(review.nose.wood);
+    const [noseNotes,setNoseNotes]=useState(review.nose.notes);
 
-    const [palateCereal, setPalateCereal]=useState(5);
-    const [palateFruit, setPalateFruit]=useState(5);
-    const [palateFloral, setPalateFloral]=useState(5);
-    const [palateSpice, setPalateSpice]=useState(5);
-    const [palateWood, setPalateWood]=useState(5);
-    const [palateNotes,setPalateNotes]=useState("");
+    const [palateCereal, setPalateCereal]=useState(review.palate.cereal);
+    const [palateFruit, setPalateFruit]=useState(review.palate.fruit);
+    const [palateFloral, setPalateFloral]=useState(review.palate.fFloral);
+    const [palateSpice, setPalateSpice]=useState(review.palate.spice);
+    const [palateWood, setPalateWood]=useState(review.palate.wood);
+    const [palateNotes,setPalateNotes]=useState(review.palate.notes);
 
-    const [finishCereal, setFinishCereal]=useState(5);
-    const [finishFruit, setFinishFruit]=useState(5);
-    const [finishFloral, setFinishFloral]=useState(5);
-    const [finishSpice, setFinishSpice]=useState(5);
-    const [finishWood, setFinishWood]=useState(5);
-    const [finishNotes,setFinishNotes]=useState("");
+    const [finishCereal, setFinishCereal]=useState(review.finish.cereal);
+    const [finishFruit, setFinishFruit]=useState(review.finish.fruit);
+    const [finishFloral, setFinishFloral]=useState(review.finish.floral);
+    const [finishSpice, setFinishSpice]=useState(review.finish.spice);
+    const [finishWood, setFinishWood]=useState(review.finish.wood);
+    const [finishNotes,setFinishNotes]=useState(review.finish.notes);
 
-    const handleSubmit=(event)=>{
+    const handleUpdate=(event)=>{
         event.preventDefault();
         const nose={
             cereal:noseCereal,
@@ -87,7 +91,7 @@ function NewReviewForm(props){
             finish
         }
         console.log(`You Created Review for ${newReview.name}`)
-        saveReview(newReview)
+        updateReview(newReview,newReview.id)
         history('/whiskeys')
     }
     return (
@@ -95,7 +99,7 @@ function NewReviewForm(props){
             <NavBar/>
             <h2 className="mt-3">New Whiskey Information</h2>
             <div className="form col-md-6 offset-md-3 validated-form" noValidate  encType="multipart/form-data">
-            <form className="form-group" onSubmit={handleSubmit}>
+            <form className="form-group" onSubmit={handleUpdate}>
 
                 <div className="input-group mb-3 mt-3">
                     <span className="input-group-text" id="name" >Name</span>
@@ -127,8 +131,8 @@ function NewReviewForm(props){
                 </div>
 
                 <div className="form-floating">
-                    <textarea className="form-control" placeholder="Enter Notes Here" id="floatingTextarea" onChange={e=>setNotes(e.target.value)}></textarea>
-                    <label htmlFor="floatingTextarea">Whiskey Notes</label>
+                    <textarea className="form-control" defaultValue={notes} placeholder="Enter Notes Here" id="floatingTextarea" onChange={e=>setNotes(e.target.value)}></textarea>
+                    <label htmlFor="floatingTextarea" >Whiskey Notes</label>
                 </div>
                 {/*accordian starts here */}
 
@@ -201,11 +205,12 @@ function NewReviewForm(props){
 
 
 
-                <button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>Submit</button>
+                <button type="submit" className="btn btn-primary" onSubmit={handleUpdate}>Update</button>
+                <Link to={`/whiskey/${paramId}`} className="btn btn-primary" >Cancel</Link>
             </form>
             </div>
         </div>
     )
 }
 
-export default NewReviewForm;
+export default EditForm;

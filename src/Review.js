@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "./NavBar";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 import FlavorChart from "./FlavorChart"
 
 
@@ -37,6 +37,12 @@ function Review(props){
                     <h6 className="card-subtitle mb-2 text-muted">Finish: {review.finishRating}</h6>
                     <FlavorChart nose={review.nose} palate={review.palate} finish={review.finish} />
                     <h4 className="card-subtitle mb-2 text-muted"> Overall Score: {review.overall}</h4>
+
+                    <div className="button-group">
+                        <Link to={`/whiskey/${paramId}/edit`} className="card-link btn btn-primary">Edit</Link>
+                        <button  className="card-link btn btn-primary" onClick={()=>props.deleteReview(review.id)}>Delete</button>                        
+                    </div>
+
                     
                 </div>
             </div>   

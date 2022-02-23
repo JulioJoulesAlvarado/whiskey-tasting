@@ -9,7 +9,7 @@ function Preview(props){
                     <h5 className="card-title">{review.name}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">{review.year}</h6>
                     <h5 className="card-subtitle mb-2 text-muted">Score: {review.overall}</h5>
-                    <Link to={`/whiskey/${props.id}`} className="card-link">Review</Link>
+                    <Link to={`/whiskey/${props.id}`} className="card-link btn btn-primary">Review</Link>
                 </div>
             </div>   
     )

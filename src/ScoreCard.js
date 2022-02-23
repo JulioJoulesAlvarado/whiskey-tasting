@@ -25,7 +25,7 @@ function ScoreCard(props){
                     step="0" id={`woodRating${name}`} onChange={e=>setWood(e.target.value)}></input>
 
                 <div className="form-floating">
-                    <textarea className="form-control" placeholder={`Enter ${name} Notes Here`} id={`notesFor${name}`} onChange={e=>setNotes(e.target.value)}></textarea>
+                    <textarea className="form-control" placeholder={`Enter ${name} Notes Here`} id={`notesFor${name}`} value={notes}  onChange={e=>setNotes(e.target.value)}></textarea>
                     <label htmlFor={`notesFor${name}`}>Notes for {name}</label>
                 </div>
             </div>

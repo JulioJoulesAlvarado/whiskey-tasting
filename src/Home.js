@@ -12,8 +12,8 @@ function Home(){
                 <p className="welcome">
                 Welcome to my Whiskey Review Site <br/> Jump right in and explore the whiskeys. <br/>
                 Feel free to comment!</p>
-                <a href="/whiskeys" className="btn btn-lg btn-secondary font-weight-bold border-white bg-black">View
-                Reviews</a>
+                <Link to="/whiskeys" className="btn btn-lg btn-secondary font-weight-bold border-white bg-black">View
+                Reviews</Link>
                 
             </div>
         </div>
