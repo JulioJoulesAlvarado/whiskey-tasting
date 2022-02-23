@@ -1,6 +1,12 @@
 import React from "react";
 import NavBar from "./NavBar";
 import { useParams } from "react-router-dom";
+import FlavorChart from "./FlavorChart"
+
+
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
+
 
 function Review(props){
     const {reviews}=props;
@@ -21,12 +27,15 @@ function Review(props){
                     <h6 className="card-subtitle mb-2 text-muted"> Class: {review.whiskeyType}</h6>
                     <h6 className="card-subtitle mb-2 text-muted">Age: {review.age}</h6>
 
-                    <p class="card-text">{review.notes}</p>
+                    <p className="card-text">{review.notes}</p>
 
                     <h4 className="card-subtitle mb-2 text-muted">Ratings:</h4>
                     <h6 className="card-subtitle mb-2 text-muted">Nose: {review.noseRating}</h6>
+                    
                     <h6 className="card-subtitle mb-2 text-muted">Palate: {review.palateRating}</h6>
+                    
                     <h6 className="card-subtitle mb-2 text-muted">Finish: {review.finishRating}</h6>
+                    <FlavorChart nose={review.nose} palate={review.palate} finish={review.finish} />
                     <h4 className="card-subtitle mb-2 text-muted"> Overall Score: {review.overall}</h4>
                     
                 </div>
