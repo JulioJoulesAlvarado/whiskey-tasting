@@ -2,6 +2,7 @@ import NavBar from "./NavBar";
 import React, {useState} from "react";
 import ScoreCard from "./ScoreCard";
 import {useNavigate} from "react-router-dom";
+import {v4 as uuidv4} from "uuid";
 
 function NewReviewForm(props){
     const {saveReview}=props;
@@ -72,7 +73,7 @@ function NewReviewForm(props){
             name:name,
             proof:proof,
             year:year,
-            id: `${name} ${year}`,
+            id: uuidv4(),
             distillery:distillery,
             notes:notes,
             whiskeyType:whiskeyType,

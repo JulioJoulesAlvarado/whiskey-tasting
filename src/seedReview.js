@@ -1,9 +1,11 @@
+import {v4 as uuidv4} from "uuid";
+
 export default [
     {
         name: "Buffalo Trace",
         proof: 90,
         year: 2020,
-        id:"Buffalo Trace 2020",
+        id:uuidv4(),
         distillery:"Buffalo Trace",
         noseRating:5,
         palateRating: 6,

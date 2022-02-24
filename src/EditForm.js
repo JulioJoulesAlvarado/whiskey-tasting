@@ -14,6 +14,7 @@ function EditForm(props){
 
     const [name, setName]=useState(review.name)
     const [proof, setProof]=useState(review.proof)
+    const [id, setId]=useState(review.id)
     const [year, setYear]=useState(review.year)
     const [distillery, setDistillery]=useState(review.distillery)
     const [notes, setNotes]=useState(review.notes)
@@ -76,7 +77,7 @@ function EditForm(props){
             name:name,
             proof:proof,
             year:year,
-            id: `${name} ${year}`,
+            id: id,
             distillery:distillery,
             notes:notes,
             whiskeyType:whiskeyType,
