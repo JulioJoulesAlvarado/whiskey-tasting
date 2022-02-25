@@ -9,7 +9,7 @@ function WhiskeyList(props){
     const reviewLinks=reviews.map((r,idx)=><Preview key={r.name} id={idx} review={r} />)
     return(
         <div className="whiskeyList">
-            <NavBar/>
+            <NavBar page="whiskeys"/>
             <div className="previewContainer mt-5">
                 <div className="previewList col-8">
                     <div className="listHeader mb-4"> 

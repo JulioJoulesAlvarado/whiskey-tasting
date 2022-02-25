@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import ScoreCard from "./ScoreCard";
 import {useNavigate} from "react-router-dom";
 import {v4 as uuidv4} from "uuid";
+import "./css/Form.css"
 
 function NewReviewForm(props){
     const {saveReview}=props;
@@ -93,11 +94,11 @@ function NewReviewForm(props){
     }
     return (
         <div className="reviewForm">
-            <NavBar/>
-            <h2 className="mt-3">New Whiskey Information</h2>
-            <div className="form col-md-6 offset-md-3 validated-form" noValidate  encType="multipart/form-data">
-            <form className="form-group" onSubmit={handleSubmit}>
-
+            <NavBar page="newReview"/>
+            
+            <div className="form mt-3 mb-5 pb-3 col-md-6 offset-md-3 validated-form" noValidate  encType="multipart/form-data">
+            <form  className="col-10" onSubmit={handleSubmit}>
+                <h2 className="mt-3">New Whiskey Information</h2>
                 <div className="input-group mb-3 mt-3">
                     <span className="input-group-text" id="name" >Name</span>
                     <input type="text" className="form-control"  value={name} placeholder="" aria-label="Name" onChange={e=>setName(e.target.value)}/>
@@ -135,13 +136,13 @@ function NewReviewForm(props){
 
                 <div className="accordion mt-5" id="scoreAccordian">
                     <div className="accordion-item">
-                        <h3 className="accordian-header" id="headingNose">
+                        <h2 className="accordian-header" id="headingNose">
                             <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNose" aria-expanded="true" aria-controls="collapseNose">
                             Nose
                             </button>                    
-                        </h3>
+                        </h2>
 
-                        <div id="collapseNose" className="accordion-collapse collapse show" aria-labelledby="headingNose" data-bs-parent="#scoreAccordion">
+                        <div id="collapseNose" className="accordion-collapse collapse show " aria-labelledby="headingNose" data-bs-parent="#scoreAccordion">
                             <div className="accordion-body">
                             <label htmlFor="noseRating" className="form-label mt-2">{`Nose Rating: ${noseRating}`} </label>
                             <input type="range" value={noseRating} className="form-range" min="0" max="10" step="0.5" id="noseRating" onChange={e=>setNoseRating(e.target.value)}></input>
@@ -155,11 +156,11 @@ function NewReviewForm(props){
                     </div>
                     
                     <div className="accordion-item">
-                        <h3 className="accordian-header" id="headingPalate">
+                        <h2 className="accordian-header" id="headingPalate">
                             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePalate" aria-expanded="false" aria-controls="collapsePalate">
                             Palate
                             </button>                    
-                        </h3>
+                        </h2>
                         
                         <div id="collapsePalate" className="accordion-collapse collapse" aria-labelledby="headingPalate" data-bs-parent="#scoreAccordion">
                             <div className="accordion-body"></div>
@@ -174,11 +175,11 @@ function NewReviewForm(props){
                     </div>
                     
                     <div className="accordion-item">
-                        <h3 className="accordian-header" id="headingFinish">
+                        <h2 className="accordian-header" id="headingFinish">
                             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFinish" aria-expanded="false" aria-controls="collapseFinish">
                             Finish
                             </button>                    
-                        </h3>
+                        </h2>
                         <div id="collapseFinish" className="accordion-collapse collapse" aria-labelledby="headingFinish" data-bs-parent="#scoreAccordion">
                             <div className="accordion-body"></div>
                                 <label htmlFor="finishRating" className="form-label mt-2">{`Finish Rating: ${finishRating}`} </label>
@@ -202,7 +203,7 @@ function NewReviewForm(props){
 
 
 
-                <button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>Submit</button>
+                <button type="submit " className="btn btn-primary" onSubmit={handleSubmit}>Submit</button>
             </form>
             </div>
         </div>

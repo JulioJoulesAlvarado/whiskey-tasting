@@ -42,7 +42,6 @@ function FlavorChart(props){
     };
     return(
         <div className="radarChart">
-        <h5 className="card-subtitle mb-2 text-muted">Flavor Wheel</h5>
         <Radar
             data={dataFromReview}
             options={options}

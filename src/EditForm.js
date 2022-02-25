@@ -2,6 +2,7 @@ import NavBar from "./NavBar";
 import React, {useState} from "react";
 import ScoreCard from "./ScoreCard";
 import {useNavigate,useParams,Link} from "react-router-dom";
+import "./css/Form.css"
 
 function EditForm(props){
     const paramId=useParams().id;
@@ -98,10 +99,10 @@ function EditForm(props){
     return (
         <div className="reviewForm">
             <NavBar/>
-            <h2 className="mt-3">New Whiskey Information</h2>
-            <div className="form col-md-6 offset-md-3 validated-form" noValidate  encType="multipart/form-data">
-            <form className="form-group" onSubmit={handleUpdate}>
-
+            
+            <div className="form mt-3 mb-3 pb-3 col-md-6 offset-md-3 validated-form" noValidate  encType="multipart/form-data">
+            <form className="col-10" onSubmit={handleUpdate}>
+                <h2 className="mt-3">Edit Whiskey Information</h2>
                 <div className="input-group mb-3 mt-3">
                     <span className="input-group-text" id="name" >Name</span>
                     <input type="text" className="form-control"  value={name} placeholder="" aria-label="Name" onChange={e=>setName(e.target.value)}/>
@@ -206,8 +207,8 @@ function EditForm(props){
 
 
 
-                <button type="submit" className="btn btn-primary" onSubmit={handleUpdate}>Update</button>
-                <Link to={`/whiskey/${paramId}`} className="btn btn-primary" >Cancel</Link>
+                <button type="submit" className="btn btn-primary mr-1" onSubmit={handleUpdate}>Update</button>
+                <Link to={`/whiskey/${paramId}`} className="btn btn-primary ml-1" >Cancel</Link>
             </form>
             </div>
         </div>
