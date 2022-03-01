@@ -27,7 +27,7 @@ function Review(props){
                     <h2 className="card-subtitle mb-2 text-muted">{review.year}</h2>
                 </div>
 
-                <hr class="solid"></hr>
+                <hr className="solid"></hr>
 
                 <div className="details">
                     <h6 className="card-subtitle mb-2 text-muted"> Class: {review.whiskeyType}</h6>
@@ -36,14 +36,14 @@ function Review(props){
                     <h6 className="card-subtitle mb-2 text-muted">Age: {review.age}</h6>
                 </div>
 
-                <hr class="solid"></hr>
+                <hr className="solid"></hr>
 
                 <div className="chart col-8 col-offset-2">
                         <h4><u>Flavor Profile</u></h4>
                         <FlavorChart nose={review.nose} palate={review.palate} finish={review.finish} />
                 </div>
 
-                <hr class="solid"></hr>
+                <hr className="solid"></hr>
 
                 <div className="noseReview">
                     <h4><u>Nose</u></h4>
@@ -51,7 +51,7 @@ function Review(props){
                     <p className="notes">{review.nose.notes}</p>
                 </div>
 
-                <hr class="solid"></hr>
+                <hr className="solid"></hr>
 
                 <div className="palateReview">
                     <h4><u>Palate</u></h4>
@@ -59,7 +59,7 @@ function Review(props){
                     <p className="notes">{review.palate.notes}</p>
                 </div>
 
-                <hr class="solid"></hr>
+                <hr className="solid"></hr>
 
                 <div className="finishReview">
                     <h4><u>Finish</u></h4>
@@ -67,7 +67,7 @@ function Review(props){
                     <p className="notes">{review.finish.notes}</p>
                 </div>
 
-                <hr class="solid"></hr>
+                <hr className="solid"></hr>
 
                 <div className="additional">
                     <h3 className="card-subtitle mb-2"><u>Overall Score: {review.overall}</u> </h3>
@@ -75,7 +75,7 @@ function Review(props){
                 </div>                    
                 
 
-                <hr class="solid"></hr>
+                <hr className="solid"></hr>
 
                 <div className="button-group mb-2">
                         <Link to={`/whiskey/${paramId}/edit`} className="card-link btn btn-primary">Edit</Link>

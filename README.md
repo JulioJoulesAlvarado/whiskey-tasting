@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# Julio's Whiskey Tasting Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The following project is a way to practice Full Stack Web Development fresh out of two online bootcamp courses from Udemy. The goal is to create a an applciation using the MERN stack. 
 
-## Available Scripts
+At the same time, I wanted to make something useful for myself. One of my hobbies is whiskey tasting. To track my whiskey notes, I have been using a google doc. Over time I have wanted a better way to save my notes and compare whiskeys. This application will serve as a simple React CRUD application witht he ability to compare whiskeys. 
 
-In the project directory, you can run:
+## WebApp/Blog
 
-### `npm start`
+I am going to start with this in blog format. Only I will be able to push data to my backend and others won't be able to comment or update their own reviews. I can add this later, but really this app is meant for me to upload my own reviews. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Grading Whiskeys
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Whiskey is generally tasted and reviewd based on it's three profiles on the nose, palate, and finish. These will be integrated into my reviews aong with notes as explanations.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Comparing Whiskeys (not fullt Implemented Yet)
 
-### `npm run build`
+To compare whiskeys I want a graphical image to show you differences in whiskeys. I will have radar charts of a flavor/tasting wheel that can be used to compare whiskeys. I will have the options to select up to 4 whiskeys to be generated next to eachother for comparison.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Frontent
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+One of my bootcamps was to learn React. I will use react to create the frontend. I will use bootstrap over Material UI simply because I have more practive with bootstrap.
 
-### `npm run eject`
+### Backend (Currently working on)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Node, Express, and MongoDB will make up the backend. I am particularly excited to use a NoSQL database as I have used SQL databases before in previous projects. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Thank You for reading and hope you can follow the journey!

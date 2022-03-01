@@ -206,9 +206,10 @@ function EditForm(props){
                 <input type="range" value={overallRating} className="form-range" min="0" max="10" step="0.5" id="overallRating" onChange={e=>setOverallRating(e.target.value)}></input>
 
 
-
-                <button type="submit" className="btn btn-primary mr-1" onSubmit={handleUpdate}>Update</button>
-                <Link to={`/whiskey/${paramId}`} className="btn btn-primary ml-1" >Cancel</Link>
+                <div className="button-group mb-2">
+                    <button type="submit" className="card-link btn btn-primary" onSubmit={handleUpdate}>Update</button>
+                    <Link to={`/whiskey/${paramId}`} className="card-link btn btn-primary" >Cancel</Link>
+                </div>
             </form>
             </div>
         </div>
