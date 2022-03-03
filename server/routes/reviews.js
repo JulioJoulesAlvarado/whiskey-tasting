@@ -19,13 +19,15 @@ const reviews=require('../controllers/reviews')
 router.route('/whiskeys')
     .get(catchAsync( reviews.index))
 
-router.route('/whiskey')
-    .post(catchAsync(reviews.createReview));
-
 router.route('/whiskey/:id')
     .get(catchAsync(reviews.showReview))
     .put(catchAsync(reviews.updateReview))
     .delete(catchAsync(reviews.deleteReview));
+    
+router.route('/whiskey')
+    .post(catchAsync(reviews.createReview));
+
+
 
 
 module.exports = router;

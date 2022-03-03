@@ -4,6 +4,7 @@ import ScoreCard from "./ScoreCard";
 import {useNavigate} from "react-router-dom";
 import {v4 as uuidv4} from "uuid";
 import "./css/Form.css"
+import api from './api';
 
 function NewReviewForm(props){
     const {saveReview}=props;
@@ -44,7 +45,7 @@ function NewReviewForm(props){
     const [finishWood, setFinishWood]=useState(5);
     const [finishNotes,setFinishNotes]=useState("");
 
-    const handleSubmit=(event)=>{
+    const handleSubmit=async (event)=>{
         event.preventDefault();
         const nose={
             cereal:noseCereal,
@@ -88,9 +89,9 @@ function NewReviewForm(props){
             palate,
             finish
         }
-        console.log(`You Created Review for ${newReview.name}`)
-        saveReview(newReview)
-        history('/whiskeys')
+        console.log(newReview)
+        //saveReview(newReview)
+        await api.insertWhiskey(newReview).then(history('/whiskeys'))
     }
     return (
         <div className="reviewForm">

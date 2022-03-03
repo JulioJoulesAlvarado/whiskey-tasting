@@ -1,7 +1,8 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import NavBar from "./NavBar";
-import { useParams,Link } from "react-router-dom";
+import { useParams,Link} from "react-router-dom";
 import FlavorChart from "./FlavorChart"
+import api from "./api"
 import "./css/Review.css"
 
 
@@ -10,12 +11,37 @@ Chart.register(...registerables);
 
 
 function Review(props){
-    const {reviews}=props;
-
+    const[review,setReview]=useState({});
     
     const paramId=useParams().id;
-    const review=reviews[paramId]
-    console.log(review)
+    
+    
+    useEffect(() => {
+        console.log("In Show Use Effect");
+
+        const getWhiskey=async () => {
+        const response=await api.getWhiskeyById(paramId);
+        const review = (response.data.data[0])
+        /*async function getWhiskeys() {
+          const response = await api.getAllWhiskeys();
+      
+          if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+          }
+          console.log(response.json);
+          
+          setReviews(response);
+        }*/
+      
+        
+        setReview(review)
+        }
+        getWhiskey();
+        return;
+      },[review.name]);
+    //console.log(review)
     return(
         <div className="review">
             <NavBar/>
@@ -40,7 +66,7 @@ function Review(props){
 
                 <div className="chart col-8 col-offset-2">
                         <h4><u>Flavor Profile</u></h4>
-                        <FlavorChart nose={review.nose} palate={review.palate} finish={review.finish} />
+                        {review.nose?<FlavorChart nose={review.nose} palate={review.palate} finish={review.finish}/>:""}
                 </div>
 
                 <hr className="solid"></hr>
@@ -48,7 +74,7 @@ function Review(props){
                 <div className="noseReview">
                     <h4><u>Nose</u></h4>
                     <h6 className="card-subtitle mb-2 text-muted">Score: {review.noseRating}</h6>
-                    <p className="notes">{review.nose.notes}</p>
+                    <p className="notes">{review.nose?review.nose.notes:""}</p>
                 </div>
 
                 <hr className="solid"></hr>
@@ -56,7 +82,7 @@ function Review(props){
                 <div className="palateReview">
                     <h4><u>Palate</u></h4>
                     <h6 className="card-subtitle mb-2 text-muted">Score: {review.palateRating}</h6>
-                    <p className="notes">{review.palate.notes}</p>
+                    <p className="notes">{review.palate?review.palate.notes:""}</p>
                 </div>
 
                 <hr className="solid"></hr>
@@ -64,7 +90,7 @@ function Review(props){
                 <div className="finishReview">
                     <h4><u>Finish</u></h4>
                     <h6 className="card-subtitle mb-2 text-muted">Score: {review.finishRating}</h6>
-                    <p className="notes">{review.finish.notes}</p>
+                    <p className="notes">{review.finish?review.finish.notes:""}</p>
                 </div>
 
                 <hr className="solid"></hr>
@@ -79,7 +105,7 @@ function Review(props){
 
                 <div className="button-group mb-2">
                         <Link to={`/whiskey/${paramId}/edit`} className="card-link btn btn-primary">Edit</Link>
-                        <button  className="card-link btn btn-primary" onClick={()=>props.deleteReview(review.id)}>Delete</button>                        
+                        <button  className="card-link btn btn-primary" onClick={()=>props.deleteReview(review._id)}>Delete</button>                        
                 </div>
                     
                 </div>

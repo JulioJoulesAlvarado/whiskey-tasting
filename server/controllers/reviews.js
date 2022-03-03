@@ -29,27 +29,43 @@ module.exports.index= async (req,res)=> {
 }*/
 
 module.exports.createReview = async (req,res,next)=>{
+    console.log("Inserting!")
     
-    const review=new Review(req.body.review);
+    const review=new Review(req.body);
+    //console.log(req.body);
+    await review.save()
+                .then(() => {
+                    return res.status(201).json({
+                        success: true,
+                        id: movie._id,
+                        message: 'Review created!',
+                    })
+                })
+                .catch(error => {
+                    return res.status(400).json({
+                    error,
+                    message: 'Review not created!',
+                    })
+                })
 
-    await review.save();
-
-    console.log(review);
-    req.flash('success', 'Succesfully made a new Campground!');
     //res.redirect(`reviews/${review._id}`);
 }
 
 module.exports.showReview= async (req,res)=> {
     console.log(req.params.id)
-    const review = await Review.findById(req.params.id)
+    const review = await Review.find({id:req.params.id})
     if(!review){
         req.flash('error', "That Review Does not Exist");
-        return res.redirect('/whiskeys');
+        return res.status(400).json({
+            error,
+            message: 'Review not created!',
+            });
     }
     
     //res.render('reviews/show',{review});
     console.log("Found It!")
     console.log(review)
+    return res.status(200).json({success:true, data:review});
 }
 
 /*module.exports.renderEditForm = async (req,res)=> {
@@ -76,7 +92,7 @@ module.exports.updateReview= async (req,res)=> {
 
     const {id}=req.params;
 
-    const review= await Campground.findByIdAndUpdate(id,{...req.body.review});
+    const review= await Review.findByIdAndUpdate(id,{...req.body.review});
     
    
     await review.save();

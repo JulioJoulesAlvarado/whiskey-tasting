@@ -10,6 +10,7 @@ import Review from './Review';
 import NewReviewForm from './NewReviewForm';
 import EditForm from './EditForm';
 import { useState} from "react";
+import api from "./api"
 
 function App() {
   const [reviews,setReviews]=useState(seedReview);
@@ -27,9 +28,10 @@ function App() {
     history(`/whiskey/${newReviews.length-1}`)
   }
 
-  const deleteReview=(id)=>{
-    setReviews(reviews.filter(review=> review.id!==id));
-    history("/whiskeys");
+  const deleteReview=async (id)=>{
+    //setReviews(reviews.filter(review=> review.id!==id));
+    await api.deleteWhiskeyById(id)
+        .then(history("/whiskeys"));
   }
   return (
     <div className="App">

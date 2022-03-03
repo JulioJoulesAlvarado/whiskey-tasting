@@ -20,7 +20,7 @@ const seedDB = async () => {
             name: "Buffalo Trace",
             proof: 90,
             year: 2020,
-            id:reviews[0].code,
+            id:reviews[0].id,
             distillery:"Buffalo Trace",
             noseRating:5,
             palateRating: 6,
