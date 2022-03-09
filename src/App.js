@@ -11,7 +11,7 @@ import NewReviewForm from './NewReviewForm';
 import EditForm from './EditForm';
 import { useState} from "react";
 import api from "./api"
-
+//"start": "set PORT=8000 &&  react-scripts start",
 function App() {
   const [reviews,setReviews]=useState(seedReview);
   const history=useNavigate();
