@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import {Link} from "react-router-dom";
+
 import NavBar from "./NavBar";
 import Preview from "./Preview";
 import "./css/WhiskeyList.css"
@@ -9,7 +9,6 @@ function WhiskeyList(props){
     const [reviews,setReviews]=useState([]);
 
     useEffect(() => {
-        console.log("YEAH");
 
         const getWhiskeys=async () => {
         const response=await api.getAllWhiskeys();
@@ -27,7 +26,7 @@ function WhiskeyList(props){
           setReviews(response);
         }*/
       
-        console.log(response.data.data);
+        //console.log(response.data.data);
         setReviews(response.data.data)
         }
         

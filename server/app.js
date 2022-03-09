@@ -1,3 +1,8 @@
+
+if(process.env.NODE_ENV !== "production"){
+    require('dotenv').config();
+}
+
 const express = require('express');
 
 const bodyParser=require('body-parser')
@@ -9,10 +14,11 @@ const mongoose = require('mongoose');
 const Review= require('./models/review');
 const reviewsRoutes = require('./routes/reviews');
 
+const ExpressError= require('./utils/ExpressError');
 
+const dbUrl=process.env.DB_URL || 'mongodb://localhost:27017/whiskeys'
 
-
-mongoose.connect('mongodb://localhost:27017/whiskeys')
+mongoose.connect(dbUrl)
 
 const app = express();
 

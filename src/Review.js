@@ -11,16 +11,57 @@ Chart.register(...registerables);
 
 
 function Review(props){
-    const[review,setReview]=useState({});
+    const[review,setReview]=useState({
+        name: "Blanton's K&L Pick",
+        proof: 93,
+        id: "Blanton's K&L Pick 2020",
+        year:2020,
+        distillery:"Buffalo Trace",
+        noseRating:6.5,
+        palateRating: 6.5,
+        finishRating:6.5,
+        uniqueness:6,
+        value:6,
+        overall: 6.5,
+        age: "10yr",
+        whiskeyType: "Bourbon",
+        retail: "$69.99",
+        notes:"Great Finish, palate lacking. WareHouse H, Rick 8,Barrel 99, 7/6/20",
+        color: "copperLight",
+        nose:{
+            cereal:0,
+            fruit:4,
+            floral:0,
+            spice:2,
+            wood:2,
+            notes:"Cherry/Orange Liquor, Brown Sugar, Cinnamon, baking spice, pie crust",
+        },
+        palate:{
+            cereal:0,
+            fruit:1,
+            floral:0,
+            spice:2,
+            wood:2,
+            notes:"Light Oak, Mellow brown sugar,Cinnamon,",
+        },
+        finish:{
+            cereal:0,
+            fruit:3,
+            floral:0,
+            spice:3,
+            wood:2,
+            notes:"Spice->Candy Finish->Slight HErbal, juicy/acidic",
+        },
+    });
     
     const paramId=useParams().id;
     
     
     useEffect(() => {
-        console.log("In Show Use Effect");
+        const paramId2=paramId;
 
         const getWhiskey=async () => {
-        const response=await api.getWhiskeyById(paramId);
+        const response=await api.getWhiskeyById(paramId2);
         const review = (response.data.data[0])
         /*async function getWhiskeys() {
           const response = await api.getAllWhiskeys();
@@ -40,7 +81,11 @@ function Review(props){
         }
         getWhiskey();
         return;
-      },[review.name]);
+      },[review.name,review.proof,review.id,review.year,review.distillery,review.notes,review.noseRating,
+        review.palateRating,review.setFinishRating,review.uniqueness,review.value,review.overall,review.whiskeyType,
+        review.nose.cereal,review.nose.fruit,review.nose.floral,review.nose.spice,review.nose.wood,review.nose.notes,
+        review.finish.cereal,review.finish.fruit,review.finish.floral,review.finish.spice,review.finish.wood,review.finish.notes,paramId
+    ]);
     //console.log(review)
     return(
         <div className="review">

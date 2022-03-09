@@ -1,8 +1,8 @@
 # Julio's Whiskey Tasting Web Application
 
-The following project is a way to practice Full Stack Web Development fresh out of two online bootcamp courses from Udemy. The goal is to create a an applciation using the MERN stack. 
+The following project is a way to practice Full Stack Web Development fresh out of two online bootcamp courses from Udemy. The goal is to create a an application using the MERN stack. 
 
-At the same time, I wanted to make something useful for myself. One of my hobbies is whiskey tasting. To track my whiskey notes, I have been using a google doc. Over time I have wanted a better way to save my notes and compare whiskeys. This application will serve as a simple React CRUD application witht he ability to compare whiskeys. 
+At the same time, I wanted to make something useful for myself. One of my hobbies is whiskey tasting. To track my whiskey notes, I had been using a google doc. I have wanted a better way to save my notes and compare whiskeys. This application will serve as a simple React CRUD application with the ability to compare whiskeys. 
 
 ## WebApp/Blog
 
@@ -10,7 +10,7 @@ I am going to start with this in blog format. Only I will be able to push data t
 
 ### Grading Whiskeys
 
-Whiskey is generally tasted and reviewd based on it's three profiles on the nose, palate, and finish. These will be integrated into my reviews aong with notes as explanations.
+Whiskey is generally tasted and reviewd based on its three profiles on the nose, palate, and finish. These will be integrated into my reviews along with notes as explanations.
 
 
 ### Comparing Whiskeys (not fullt Implemented Yet)
@@ -22,7 +22,7 @@ To compare whiskeys I want a graphical image to show you differences in whiskeys
 
 One of my bootcamps was to learn React. I will use react to create the frontend. I will use bootstrap over Material UI simply because I have more practive with bootstrap.
 
-### Backend (Currently working on)
+### Backend 
 
 Node, Express, and MongoDB will make up the backend. I am particularly excited to use a NoSQL database as I have used SQL databases before in previous projects. 
 

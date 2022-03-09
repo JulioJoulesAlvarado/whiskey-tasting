@@ -4,7 +4,7 @@ import "./css/Preview.css"
 
 function Preview(props){
     const {review}=props;
-    console.log(review)
+    
     return(
             <div className="card border-dark mb-2 col-12" >
                 <div className="card-header">

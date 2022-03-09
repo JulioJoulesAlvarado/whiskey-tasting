@@ -7,7 +7,7 @@ import "./css/Form.css"
 import api from './api';
 
 function NewReviewForm(props){
-    const {saveReview}=props;
+    //const {saveReview}=props;
 
     let history = useNavigate();
 
@@ -83,13 +83,12 @@ function NewReviewForm(props){
             palateRating:palateRating,
             finishRating,
             uniqueness,
-            valueRating,
+            value:valueRating,
             overall:overallRating,
             nose,
             palate,
             finish
         }
-        console.log(newReview)
         //saveReview(newReview)
         await api.insertWhiskey(newReview).then(history('/whiskeys'))
     }

@@ -1,54 +1,162 @@
 import NavBar from "./NavBar";
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import ScoreCard from "./ScoreCard";
 import {useNavigate,useParams,Link} from "react-router-dom";
 import "./css/Form.css"
+import api from "./api"
+
 
 function EditForm(props){
     const paramId=useParams().id;
-    const {updateReview}=props;
+    
 
-    const review=props.reviews[paramId];
-    console.log(props.reviews)
+    const [review,setReview]=useState({
+        name: "Buffalo Trace",
+        proof: 90,
+        year: 2020,
+        id:"",
+        distillery:"Buffalo Trace",
+        noseRating:5,
+        palateRating: 6,
+        finishRating:5,
+        uniqueness:4,
+        value:8,
+        overall: 5.5,
+        age: "At Least 8",
+        whiskeyType: "Bourbon",
+        retail: "$24.99",
+        notes:"Most Standard Bourbon Profile",
+        color: "copperLight",
+        nose:{
+            cereal:0,
+            fruit:3,
+            floral:0,
+            spice:1,
+            wood:2,
+            notes:"Gummy Candy, Brown Sugar, Vanilla",
+        },
+        palate:{
+            cereal:0,
+            fruit:1,
+            floral:0,
+            spice:2,
+            wood:2,
+            notes:"Light Oak, Cinnamon,Brown Sugar, Caramel, high sweetness",
+        },
+        finish:{
+            cereal:0,
+            fruit:0,
+            floral:0,
+            spice:2,
+            wood:2,
+            notes:"Slight Spice, low cedar, Light Marshmallow,",
+        },
+    });
+    
 
     let history = useNavigate();
 
-    const [name, setName]=useState(review.name)
-    const [proof, setProof]=useState(review.proof)
-    const [id, setId]=useState(review.id)
-    const [year, setYear]=useState(review.year)
-    const [distillery, setDistillery]=useState(review.distillery)
-    const [notes, setNotes]=useState(review.notes)
-    const [noseRating,setNoseRating] = useState(review.noseRating);
-    const [palateRating,setPalateRating] = useState(review.palateRating);
-    const [finishRating,setFinishRating] = useState(review.finishRating);
-    const [uniqueness,setUniqueness] = useState(review.uniqueness);
-    const [valueRating,setValueRating] = useState(review.value);
-    const [overallRating,setOverallRating] = useState(review.overall);
-    const [whiskeyType,setWhiskeyType]=useState(review.whiskeyType);
+    
+    const [name, setName]=useState("")
+    const [proof, setProof]=useState("")
+    const [id, setId]=useState("")
+    const [year, setYear]=useState("")
+    const [distillery, setDistillery]=useState("")
+    const [notes, setNotes]=useState("")
+    const [noseRating,setNoseRating] = useState(5);
+    const [palateRating,setPalateRating] = useState(5);
+    const [finishRating,setFinishRating] = useState(5);
+    const [uniqueness,setUniqueness] = useState(5);
+    const [valueRating,setValueRating] = useState(5);
+    const [overallRating,setOverallRating] = useState(5);
+    const [whiskeyType,setWhiskeyType]=useState("");
 
-    const [noseCereal, setNoseCereal]=useState(review.nose.cereal);
-    const [noseFruit, setNoseFruit]=useState(review.nose.fruit);
-    const [noseFloral, setNoseFloral]=useState(review.nose.floral);
-    const [noseSpice, setNoseSpice]=useState(review.nose.spice);
-    const [noseWood, setNoseWood]=useState(review.nose.wood);
-    const [noseNotes,setNoseNotes]=useState(review.nose.notes);
+    const [noseCereal, setNoseCereal]=useState(5);
+    const [noseFruit, setNoseFruit]=useState(5);
+    const [noseFloral, setNoseFloral]=useState(5);
+    const [noseSpice, setNoseSpice]=useState(5);
+    const [noseWood, setNoseWood]=useState(5);
+    const [noseNotes,setNoseNotes]=useState("");
 
-    const [palateCereal, setPalateCereal]=useState(review.palate.cereal);
-    const [palateFruit, setPalateFruit]=useState(review.palate.fruit);
-    const [palateFloral, setPalateFloral]=useState(review.palate.fFloral);
-    const [palateSpice, setPalateSpice]=useState(review.palate.spice);
-    const [palateWood, setPalateWood]=useState(review.palate.wood);
-    const [palateNotes,setPalateNotes]=useState(review.palate.notes);
+    const [palateCereal, setPalateCereal]=useState(5);
+    const [palateFruit, setPalateFruit]=useState(5);
+    const [palateFloral, setPalateFloral]=useState(5);
+    const [palateSpice, setPalateSpice]=useState(5);
+    const [palateWood, setPalateWood]=useState(5);
+    const [palateNotes,setPalateNotes]=useState("");
 
-    const [finishCereal, setFinishCereal]=useState(review.finish.cereal);
-    const [finishFruit, setFinishFruit]=useState(review.finish.fruit);
-    const [finishFloral, setFinishFloral]=useState(review.finish.floral);
-    const [finishSpice, setFinishSpice]=useState(review.finish.spice);
-    const [finishWood, setFinishWood]=useState(review.finish.wood);
-    const [finishNotes,setFinishNotes]=useState(review.finish.notes);
+    const [finishCereal, setFinishCereal]=useState(5);
+    const [finishFruit, setFinishFruit]=useState(5);
+    const [finishFloral, setFinishFloral]=useState(5);
+    const [finishSpice, setFinishSpice]=useState(5);
+    const [finishWood, setFinishWood]=useState(5);
+    const [finishNotes,setFinishNotes]=useState("");
 
-    const handleUpdate=(event)=>{
+    useEffect(() => {
+        
+        console.log("Rerender")
+        const getWhiskey=async () => {
+        const response=await api.getWhiskeyById(paramId);
+        const review = (response.data.data[0])
+        /*async function getWhiskeys() {
+          const response = await api.getAllWhiskeys();
+      
+          if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+          }
+          console.log(response.json);
+          
+          setReviews(response);
+        }*/
+        
+        setName(review.name)
+        setProof(review.proof)
+        setId(review.id)
+        setYear(review.year)
+        setDistillery(review.distillery)
+        setNotes(review.notes)
+        setNoseRating(review.noseRating);
+        setPalateRating(review.palateRating);
+        setFinishRating(review.finishRating);
+        setUniqueness(review.uniqueness);
+        setValueRating(review.value);
+        setOverallRating(review.overall);
+        setWhiskeyType(review.whiskeyType);
+
+        
+        setNoseCereal(review.nose.cereal);
+        setNoseFruit(review.nose.fruit);
+        setNoseFloral(review.nose.floral);
+        setNoseSpice(review.nose.spice);
+        setNoseWood(review.nose.wood);
+        setNoseNotes(review.nose.notes);
+       
+        setPalateCereal(review.palate.cereal);
+        setPalateFruit(review.palate.fruit);
+        setPalateFloral(review.palate.floral);
+        setPalateSpice(review.palate.spice);
+        setPalateWood(review.palate.wood);
+        setPalateNotes(review.palate.notes);
+    
+        setFinishCereal(review.finish.cereal);
+        setFinishFruit(review.finish.fruit);
+        setFinishFloral(review.finish.floral);
+        setFinishSpice(review.finish.spice);
+        setFinishWood(review.finish.wood);
+        setFinishNotes(review.finish.notes);
+        setReview(review)
+        }
+        getWhiskey();
+        return;
+      },[review.name,review.proof,review.id,review.year,review.distillery,review.notes,review.noseRating,
+            review.palateRating,review.setFinishRating,review.uniqueness,review.value,review.overall,review.whiskeyType,
+            review.nose.cereal,review.nose.fruit,review.nose.floral,review.nose.spice,review.nose.wood,review.nose.notes,
+            review.finish.cereal,review.finish.fruit,review.finish.floral,review.finish.spice,review.finish.wood,review.finish.notes,paramId
+        ]);
+      
+    const  handleUpdate=async (event)=>{
         event.preventDefault();
         const nose={
             cereal:noseCereal,
@@ -92,9 +200,10 @@ function EditForm(props){
             palate,
             finish
         }
-        console.log(`You Created Review for ${newReview.name}`)
-        updateReview(newReview,newReview.id)
-        history('/whiskeys')
+
+        
+        await api.updateWhiskeyById(review._id,newReview)
+            .then(history(`/whiskey/${id}`))
     }
     return (
         <div className="reviewForm">

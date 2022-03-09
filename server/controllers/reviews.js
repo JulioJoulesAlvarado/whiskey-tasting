@@ -5,7 +5,7 @@ const Review = require('../models/review');
 
 module.exports.index= async (req,res)=> {
     const reviews= await Review.find({});
-    console.log(reviews);
+    //console.log(reviews);
     /*await Review.find({}, (err, reviews)=>{
         if(err){
             return res.status(400).json({success:false,error:err})
@@ -29,7 +29,7 @@ module.exports.index= async (req,res)=> {
 }*/
 
 module.exports.createReview = async (req,res,next)=>{
-    console.log("Inserting!")
+    
     
     const review=new Review(req.body);
     //console.log(req.body);
@@ -52,7 +52,7 @@ module.exports.createReview = async (req,res,next)=>{
 }
 
 module.exports.showReview= async (req,res)=> {
-    console.log(req.params.id)
+    //console.log(req.params.id)
     const review = await Review.find({id:req.params.id})
     if(!review){
         req.flash('error', "That Review Does not Exist");
@@ -63,8 +63,8 @@ module.exports.showReview= async (req,res)=> {
     }
     
     //res.render('reviews/show',{review});
-    console.log("Found It!")
-    console.log(review)
+    //console.log("Found It!")
+    //console.log(review)
     return res.status(200).json({success:true, data:review});
 }
 
@@ -89,11 +89,12 @@ module.exports.showReview= async (req,res)=> {
 }*/
 
 module.exports.updateReview= async (req,res)=> {
-
-    const {id}=req.params;
-
-    const review= await Review.findByIdAndUpdate(id,{...req.body.review});
     
+    const {id}=req.params;
+    
+    const review= await Review.findByIdAndUpdate(id,req.body);
+    
+    //console.log(review);
    
     await review.save();
     

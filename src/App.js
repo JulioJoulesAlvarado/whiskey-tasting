@@ -4,7 +4,7 @@ import Home from "./Home"
 import WhiskeyList from './WhiskeyList';
 import "bootstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
-import {Routes,Route,useNavigate,useParams} from "react-router-dom"
+import {Routes,Route,useNavigate} from "react-router-dom"
 import seedReview from "./seedReview";
 import Review from './Review';
 import NewReviewForm from './NewReviewForm';
@@ -21,11 +21,12 @@ function App() {
     setReviews(newReviews);
   }
 
-  const updateReview= (newReview,id)=>{
-    let newReviews=reviews.filter(review=> review.id!==id);
-    newReviews=[...newReviews, newReview]
-    setReviews(newReviews);
-    history(`/whiskey/${newReviews.length-1}`)
+  const updateReview= async (newReview,id)=>{
+    //let newReviews=reviews.filter(review=> review.id!==id);
+    //newReviews=[...newReviews, newReview]
+    //setReviews(newReviews);
+    //history(`/whiskey/${newReviews.length-1}`)
+    //await api.updateWhiskeyById(id,newReview)
   }
 
   const deleteReview=async (id)=>{
@@ -37,7 +38,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path="/whiskey/:id" element={<Review reviews={reviews} deleteReview={deleteReview} /> }/>
-        <Route exact path="/whiskey/:id/edit" element={<EditForm reviews={reviews} updateReview={updateReview}/> }/>
+        <Route exact path="/whiskey/:id/edit" element={<EditForm updateReview={updateReview}/> }/>
         <Route exact path="/whiskeys" element={<WhiskeyList reviews={reviews}/>} />
         <Route exact path="/createReview" element={<NewReviewForm reviews={reviews} saveReview={saveReview}/>} />
         <Route exact path="/" element={<Home/>}/>
